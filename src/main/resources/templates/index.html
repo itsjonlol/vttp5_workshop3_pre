@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th = "http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" 
+    integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" 
+    crossorigin="anonymous">
+    <title>Landing Page</title>
+</head>
+<body>
+    <h1> Workshop 13 Assignment</h1>
+    <a th:href="@{/contacts}" class = "btn btn-primary">Contacts</a>
+
+
+    <div class = "container"></div>
+        <div class = "row">
+            <div class = "col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
+                <h1 class = "text-center"> Create New Student</h1>
+                <div class = "card-body">
+                    <form th:action = "@{/contact}" th:object = "${user}" method = "POST">
+                        <div class = "form-group">
+                            <label> Please enter User Name</label>
+                            <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"></div>
+                            <input
+                            type = "text"
+                            name = "name"
+                            th:field = "*{name}" 
+                            class = "form-control"
+                            placeholder = "Enter Name"
+                            />
+                        </div>
+
+                        <div class = "form-group">
+                            <label> Please enter Email</label>
+                            <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"></div>
+                            <input
+                            type = "text"
+                            name = "email"
+                            th:field = "*{email}" 
+                            class = "form-control"
+                            placeholder = "Enter Email"
+                            />
+                        </div>
+
+                        <div class = "form-group">
+                            <label> Please enter Phone Number</label>
+                            <div th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}" class="text-danger"></div>
+                            <input
+                            type = "text"
+                            name = "phoneNumber"
+                            th:field = "*{phoneNumber}" 
+                            class = "form-control"
+                            placeholder = "Enter phone number"
+                            />
+
+                        </div>
+                        
+
+                        <div class = "form-group">
+                            <label> Please enter date of birth</label>
+                            <div th:if="${#fields.hasErrors('dateOfBirth')}" th:errors="*{dateOfBirth}" class="text-danger"></div>
+                            <input
+                            type = "date"
+                            name = "dateOfBirth"
+                            th:field = "*{dateOfBirth}" 
+                            class = "form-control"
+                            placeholder = "Enter date of birth"
+                            />
+                        </div>
+                        
+                        <div class = "box-footer">
+                            <button type = "submit" class = "btn btn-primary">
+                                Submit
+                            </button>
+                        </div>
+                    
+                        
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+</body>
+</html>
