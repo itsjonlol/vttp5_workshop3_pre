@@ -11,6 +11,7 @@
 <body>
     <h1> Workshop 13 Assignment</h1>
     <a th:href="@{/contacts}" class = "btn btn-primary">Contacts</a>
+    
 
 
     <div class = "container"></div>
@@ -18,7 +19,17 @@
             <div class = "col-lg-6 col-md-6 col-sm-6 container justify-content-center card">
                 <h1 class = "text-center"> Create New Student</h1>
                 <div class = "card-body">
+                    
                     <form th:action = "@{/contact}" th:object = "${user}" method = "POST">
+                        
+                        <!-- <div th:if="${#fields.hasErrors('global')}" class="alert alert-danger" role="alert">
+                            <ul>
+                                <li th:each="err : ${#fields.errors('global')}">
+                                    <span th:text="${err}"></span>
+                                </li>
+                            </ul>
+                        </div> -->
+
                         <div class = "form-group">
                             <label> Please enter User Name</label>
                             <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"></div>
@@ -68,7 +79,11 @@
                             placeholder = "Enter date of birth"
                             />
                         </div>
+
                         
+                        
+                        
+
                         <div class = "box-footer">
                             <button type = "submit" class = "btn btn-primary">
                                 Submit

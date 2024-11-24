@@ -23,6 +23,7 @@ import com.workshop3_pre.workshop3_pre.service.impl.Contacts;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.validation.Valid;
 
+
 @Controller
 public class FormController {
 
@@ -49,6 +50,16 @@ public class FormController {
         if (result.hasErrors()) {
             return "index";
         }
+        // if (contacts.checkIfNameExists(user.getName())) {
+        //     FieldError err = new FieldError("user", "name", "Name already exists");
+        //     result.addError(err);
+        //     return "index";
+        // }
+        // if (contacts.checkIfEmailExists(user.getEmail())) {
+        //     ObjectError err = new ObjectError("global","Email already exists");
+        //     result.addError(err);
+        //     return "index";
+        // }
         model.addAttribute("user",user);
         //user.setId("TestID");
         //System.out.println(user.getId());
@@ -138,6 +149,29 @@ public class FormController {
         model.addAttribute("userList",userList);
         return "contacts_page";
     }
+
+    @GetMapping("/delete/{userid}")
+    public String deleteUser(@PathVariable("userid") String id) {
+        contacts.deleteUserById(id);
+        return "redirect:/contacts";
+    }
+
+    @GetMapping("/update/{userid}")
+    public String updateUser(@PathVariable("userid") String id,Model model) {
+        User userToUpdate = contacts.getUserById(id);
+        model.addAttribute("user",userToUpdate);
+        return "updateuser_page";
+    }
+
+    @PostMapping("/update")
+    public String updatedUserData(@Valid @ModelAttribute("user") User user,BindingResult result,Model model) throws IOException {
+        if (result.hasErrors()) {
+            return "updateuser_page";
+        }
+        contacts.updateUser(user);
+        return "redirect:/contacts";
+    }
+    
 
 
      

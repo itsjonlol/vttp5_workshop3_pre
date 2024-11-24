@@ -1,6 +1,7 @@
 package com.workshop3_pre.workshop3_pre.model;
 
 import java.time.LocalDate;
+import java.util.Random;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -47,12 +48,19 @@ public class User {
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.dateOfBirth = dateOfBirth;
+        String random = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        String randomString = generateRandom(random);
+        this.id=randomString;
+        
     }
 
     private Long dateOfBirthEpoch;
 
 
     public User() {
+        String random = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+        String randomString = generateRandom(random);
+        this.id=randomString;
     }
 
     
@@ -140,7 +148,15 @@ public class User {
         this.dateOfBirthEpoch = dateOfBirthEpoch;
     }
 
-    
+    public String generateRandom(String aToZ) {
+    Random rand=new Random();
+    StringBuilder res=new StringBuilder();
+    for (int i = 0; i < 8; i++) {
+       int randIndex=rand.nextInt(aToZ.length()); 
+       res.append(aToZ.charAt(randIndex));            
+    }
+    return res.toString();
+    }
 
     
 }
