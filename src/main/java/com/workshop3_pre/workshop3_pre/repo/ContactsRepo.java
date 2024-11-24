@@ -33,6 +33,15 @@ public class ContactsRepo {
         // userList = getUsers();
 
     }
+    // @PostConstruct
+    // public void init() {
+    //     try {
+    //         userList = getUsers(); // Populate userList
+    //     } catch (IOException | ParseException e) {
+    //         e.printStackTrace();
+    //         userList = new ArrayList<>(); // Fallback to an empty list
+    //     }
+    // }
 
     public void saveUser(User user) throws IOException{
         userList = new ArrayList<>();

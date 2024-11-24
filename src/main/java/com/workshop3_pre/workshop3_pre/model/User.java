@@ -43,6 +43,13 @@ public class User {
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate dateOfBirth;
 
+    private Long dateOfBirthEpoch;
+    
+    // @Past(message = "Past dates only")
+    // @NotNull(message = "You must set your date of birth")
+    // @DateTimeFormat(pattern = "yyyy-MM-dd")
+    // private Date dateOfBirth2;
+
     public User(String name, String email, String phoneNumber, LocalDate dateOfBirth) {
         this.name = name;
         this.email = email;
@@ -54,7 +61,7 @@ public class User {
         
     }
 
-    private Long dateOfBirthEpoch;
+    
 
 
     public User() {
