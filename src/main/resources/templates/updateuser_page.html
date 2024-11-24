@@ -19,6 +19,8 @@
                 <div class = "card-body">
                     <form th:action = "@{/update}" th:object = "${user}" method = "POST">
 
+                       
+
                         
 
                         <div class = "form-group">
@@ -80,6 +82,18 @@
                             th:field = "*{dateOfBirth}" 
                             class = "form-control"
                             placeholder = "Enter date of birth"
+                            />
+                        </div>
+
+                        <div class = "form-group">
+                            <label> Please enter date of birth 2</label>
+                            <div th:if="${#fields.hasErrors('dateOfBirth2')}" th:errors="*{dateOfBirth2}" class="text-danger"></div>
+                            <input
+                            type = "date"
+                            name = "dateOfBirth2"
+                            th:field = "*{dateOfBirth2}" 
+                            class = "form-control"
+                            placeholder = "Enter date of birth 2"
                             />
                         </div>
                         

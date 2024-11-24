@@ -1,6 +1,7 @@
 package com.workshop3_pre.workshop3_pre.model;
 
 import java.time.LocalDate;
+import java.util.Date;
 import java.util.Random;
 
 import org.springframework.format.annotation.DateTimeFormat;
@@ -45,16 +46,17 @@ public class User {
 
     private Long dateOfBirthEpoch;
     
-    // @Past(message = "Past dates only")
-    // @NotNull(message = "You must set your date of birth")
-    // @DateTimeFormat(pattern = "yyyy-MM-dd")
-    // private Date dateOfBirth2;
+    @Past(message = "Past dates only")
+    @NotNull(message = "You must set your date of birth")
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    private Date dateOfBirth2;
 
-    public User(String name, String email, String phoneNumber, LocalDate dateOfBirth) {
+    public User(String name, String email, String phoneNumber, LocalDate dateOfBirth,Date dateOfBirth2) {
         this.name = name;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.dateOfBirth = dateOfBirth;
+        this.dateOfBirth2 = dateOfBirth2;
         String random = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
         String randomString = generateRandom(random);
         this.id=randomString;
@@ -71,6 +73,24 @@ public class User {
     }
 
     
+    
+
+    public User(
+            @NotNull(message = "Name cannot be null") @NotEmpty(message = "Name cannot be empty") @Pattern(regexp = "^[a-zA-Z ]+$", message = "Name cannot contain numbers") @Size(min = 3, max = 64, message = "Name must be inbetween 3 and 64 characters") String name,
+            @NotNull @NotEmpty(message = "Email is required") @Email(message = "Please provide a valid email address") String email,
+            @Pattern(regexp = "^[0-9]*$", message = "Please enter a valid number") @Size(min = 7, message = "Phone number must be more than 7 digits") String phoneNumber,
+            @Past(message = "Past dates only") @NotNull(message = "You must set your date of birth") LocalDate dateOfBirth,
+            Long dateOfBirthEpoch,
+            @Past(message = "Past dates only") @NotNull(message = "You must set your date of birth") Date dateOfBirth2) {
+        this.name = name;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+        this.dateOfBirth = dateOfBirth;
+        this.dateOfBirthEpoch = dateOfBirthEpoch;
+        this.dateOfBirth2 = dateOfBirth2;
+    }
+
+
 
 
     public User(String id,
@@ -155,6 +175,8 @@ public class User {
         this.dateOfBirthEpoch = dateOfBirthEpoch;
     }
 
+    
+
     public String generateRandom(String aToZ) {
     Random rand=new Random();
     StringBuilder res=new StringBuilder();
@@ -163,6 +185,20 @@ public class User {
        res.append(aToZ.charAt(randIndex));            
     }
     return res.toString();
+    }
+
+
+
+
+    public Date getDateOfBirth2() {
+        return dateOfBirth2;
+    }
+
+
+
+
+    public void setDateOfBirth2(Date dateOfBirth2) {
+        this.dateOfBirth2 = dateOfBirth2;
     }
 
     

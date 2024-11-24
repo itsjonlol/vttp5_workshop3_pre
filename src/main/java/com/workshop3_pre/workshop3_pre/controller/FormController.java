@@ -11,6 +11,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
+import org.springframework.validation.FieldError;
+import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -46,20 +48,22 @@ public class FormController {
     
     @PostMapping("/contact")
     public String contactPage(@Valid @ModelAttribute("user") User user,BindingResult result,Model model,
-    RedirectAttributes redirectAttributes,HttpServletResponse response) throws IOException {
+    RedirectAttributes redirectAttributes,HttpServletResponse response) throws IOException, ParseException {
+        contacts.getUsers(); // important for loading the users first.
+        if (contacts.checkIfNameExists(user.getName())) {
+            FieldError err = new FieldError("user", "name", "Name already exists");
+            result.addError(err);
+            // return "index";
+        }
+        if (contacts.checkIfEmailExists(user.getEmail())) {
+            ObjectError err = new ObjectError("global","Email already exists");
+            result.addError(err);
+        }
         if (result.hasErrors()) {
             return "index";
         }
-        // if (contacts.checkIfNameExists(user.getName())) {
-        //     FieldError err = new FieldError("user", "name", "Name already exists");
-        //     result.addError(err);
-        //     return "index";
-        // }
-        // if (contacts.checkIfEmailExists(user.getEmail())) {
-        //     ObjectError err = new ObjectError("global","Email already exists");
-        //     result.addError(err);
-        //     return "index";
-        // }
+        
+        
         model.addAttribute("user",user);
         //user.setId("TestID");
         //System.out.println(user.getId());
@@ -164,7 +168,10 @@ public class FormController {
     }
 
     @PostMapping("/update")
-    public String updatedUserData(@Valid @ModelAttribute("user") User user,BindingResult result,Model model) throws IOException {
+    public String updatedUserData(@Valid @ModelAttribute("user") User user,BindingResult result,Model model) throws IOException, ParseException {
+        
+        contacts.getUsers(); // important for loading the users first.
+        
         if (result.hasErrors()) {
             return "updateuser_page";
         }

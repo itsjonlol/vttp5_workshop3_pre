@@ -1,4 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: com.workshop3_pre.workshop3_pre.Workshop3PreApplicationTests
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 1.790 s -- in com.workshop3_pre.workshop3_pre.Workshop3PreApplicationTests
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 2.234 s -- in com.workshop3_pre.workshop3_pre.Workshop3PreApplicationTests

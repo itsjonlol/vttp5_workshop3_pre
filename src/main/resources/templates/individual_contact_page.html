@@ -26,6 +26,7 @@
                 <th>Email</th>
                 <th>Number</th>
                 <th>Date of Birth</th>
+                <th>Date of Birth2</th>
                 <th>Date of Birth Epoch</th>
                 <th>Actions</th>
             </tr>
@@ -38,6 +39,7 @@
                 <td th:text ="*{email}"></td>
                 <td th:text ="*{phoneNumber}"></td>
                 <td th:text ="*{dateOfBirth}"></td>
+                <td th:text ="*{dateOfBirth2}"></td>
                 <td th:text = "*{dateOfBirthEpoch}"></td>
                 <td>
                     <a th:href="@{/update/{userid}(userid=${user.id})}" class = "btn btn-success">Update</a>

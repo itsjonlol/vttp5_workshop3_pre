@@ -58,6 +58,8 @@ public class ContactsRepo {
         bw.newLine();
         bw.write(String.valueOf(user.getDateOfBirth()));
         bw.newLine();
+        bw.write(String.valueOf(user.getDateOfBirth2()));
+        bw.newLine();
         bw.flush();
         bw.close();
         writer.close();
@@ -120,19 +122,25 @@ public class ContactsRepo {
 
                     LocalDate date = LocalDate.parse(line, DateTimeFormatter.ofPattern("yyyy-MM-dd"));
                     user.setDateOfBirth(date);
-                    
+                    SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
+
+                    Date dDob = sdf2.parse(line);
+                    Long epochDob = dDob.getTime();
+                    user.setDateOfBirthEpoch(epochDob);
+                    user.setDateOfBirth2(dDob);
+                }
                     //doesnt work
                     // SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
                     // Date date = sdf.parse(line);
                     // user.setDateOfBirth(date);
 
+                // } else if (count==4) {
+                //     SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+                //     Date date2 = sdf.parse(line);
+                //     user.setDateOfBirth2(date2);
 
-                    SimpleDateFormat sdf2 = new SimpleDateFormat("yyyy-MM-dd");
-                    Date dDob = sdf2.parse(line);
-                    Long epochDob = dDob.getTime();
-                    user.setDateOfBirthEpoch(epochDob);
-
-                }
+                    
+                // }
                 count++;
             }
             // user.setId(userFileId);

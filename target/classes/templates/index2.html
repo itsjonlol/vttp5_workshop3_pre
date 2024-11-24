@@ -32,7 +32,7 @@
 
                         <div class = "form-group">
                             <label> Please enter User Name</label>
-                            <div th:if="${#fields.hasErrors('name')}" th:errors="*{name}" class="text-danger"></div>
+                            <div th:if="${nameError}" th:text="*{nameError}" class="text-danger"></div>
                             <input
                             type = "text"
                             name = "name"
@@ -44,7 +44,7 @@
 
                         <div class = "form-group">
                             <label> Please enter Email</label>
-                            <div th:if="${#fields.hasErrors('email')}" th:errors="*{email}" class="text-danger"></div>
+                            <div th:if="${emailError}" th:text="${emailError}" class="text-danger"></div>
                             <input
                             type = "text"
                             name = "email"
@@ -56,7 +56,7 @@
 
                         <div class = "form-group">
                             <label> Please enter Phone Number</label>
-                            <div th:if="${#fields.hasErrors('phoneNumber')}" th:errors="*{phoneNumber}" class="text-danger"></div>
+                            <div th:if="${phoneNumber}" th:text="${phoneNumber}" class="text-danger"></div>
                             <input
                             type = "text"
                             name = "phoneNumber"
@@ -70,13 +70,25 @@
 
                         <div class = "form-group">
                             <label> Please enter date of birth</label>
-                            <div th:if="${#fields.hasErrors('dateOfBirth')}" th:errors="*{dateOfBirth}" class="text-danger"></div>
+                            <div th:if="${dateOfBirth}" th:text="${dateOfBirth}" class="text-danger"></div>
                             <input
                             type = "date"
                             name = "dateOfBirth"
                             th:field = "*{dateOfBirth}" 
                             class = "form-control"
                             placeholder = "Enter date of birth"
+                            />
+                        </div>
+
+                        <div class = "form-group">
+                            <label> Please enter date of birth 2</label>
+                            <div th:if="${dateOfBirth2}" th:text="${dateOfBirth2}" class="text-danger"></div>
+                            <input
+                            type = "date"
+                            name = "dateOfBirth2"
+                            th:field = "*{dateOfBirth2}" 
+                            class = "form-control"
+                            placeholder = "Enter date of birth 2"
                             />
                         </div>
 
